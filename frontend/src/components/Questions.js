@@ -31,7 +31,7 @@ function Questions(props) {
             <label htmlFor={`q${index}-option`} className="text-primary">
               {question}
             </label>
-            <div className="check checked"></div>
+            <div className="check"></div>
           </li>
         ))}
         {/* <li>
