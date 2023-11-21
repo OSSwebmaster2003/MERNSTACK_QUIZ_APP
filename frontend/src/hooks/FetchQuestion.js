@@ -6,7 +6,7 @@ import * as Action from "../redux/question_reducer";
 
 // fetch question hook to fetch api data and set value to store
 
-export const useFetchQuestion = () => {
+export const useFetchQuestions = () => {
   const dispatch = useDispatch();
   const [getData, setGetData] = useState({
     isLoading: false,

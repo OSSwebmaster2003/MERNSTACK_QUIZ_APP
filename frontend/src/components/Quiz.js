@@ -6,7 +6,6 @@ function Quiz(props) {
   const { questions, result } = useSelector((state) => state);
   useEffect(() => {
     console.log(questions.queue);
-    console.log(result.userId);
   });
   // next button event handler
   function onNext() {
