@@ -5,13 +5,13 @@ function Questions(props) {
   const [checked, setChecked] = useState(undefined);
 
   function onSelect() {
-    console.log("radio button change");
+    // console.log("radio button change");
   }
 
   const question = data[0];
 
   useEffect(() => {
-    console.log(question);
+    // console.log(question);
   });
   return (
     <div className="questions">
