@@ -13,8 +13,7 @@ function Quiz(props) {
   const trace = questions.trace;
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(result);
-    console.log(questions);
+    console.log(result.result);
   });
   // next button event handler
   function onNext(optionValue) {
@@ -55,14 +54,10 @@ function Quiz(props) {
       <Questions onChecked={onChecked} />
 
       <div className="grid">
-        <button className="btn prev" onClick={onPrev}>
+        <button className="btn prev" onClick={onPrev} disabled={trace === 0}>
           Prev
         </button>
-        <button
-          className="btn next"
-          onClick={onNext}
-          // disabled={trace > questions.queue.length - 2}
-        >
+        <button className="btn next" onClick={onNext}>
           Next
         </button>
       </div>

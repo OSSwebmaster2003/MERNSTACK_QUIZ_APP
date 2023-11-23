@@ -9,17 +9,20 @@ function Questions({ onChecked }) {
   const [{ isLoading, apiData, serverError }] = useFetchQuestions();
   const dispatch = useDispatch();
   const trace = useSelector((state) => state.questions.trace);
+  const result = useSelector((state) => state.result.result);
   const questions = useSelector((state) => state.questions.queue);
   const question = questions && questions[trace];
 
   function onSelect(index) {
     onChecked(index);
     setChecked(index);
+    dispatch(UpdateResult({ trace, checked }));
   }
 
   useEffect(() => {
-    console.log(trace, checked);
     dispatch(UpdateResult({ trace, checked }));
+
+    // eslint-disable-next-line
   }, [checked]);
 
   if (isLoading) {
@@ -46,7 +49,9 @@ function Questions({ onChecked }) {
             <label htmlFor={`q${index}-option`} className="text-primary">
               {question}
             </label>
-            <div className="check"></div>
+            <div
+              className={`check ${result[trace] === index ? "checked" : ""}`}
+            ></div>
           </li>
         ))}
       </ul>
