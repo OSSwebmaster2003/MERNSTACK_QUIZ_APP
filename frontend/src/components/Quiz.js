@@ -13,7 +13,7 @@ function Quiz(props) {
   const trace = questions.trace;
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(result.result);
+    // console.log(result.result);
   });
   // next button event handler
   function onNext(optionValue) {
@@ -27,6 +27,9 @@ function Quiz(props) {
     ) {
       dispatch(PushAnswer(checked));
     }
+
+    // reset value of the checked variable
+    setChecked(undefined);
   }
 
   // previous button event handler
