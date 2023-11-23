@@ -1,9 +1,18 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserId } from "../redux/result_reducer";
 import "../styles/Main.css";
 
 function Main(props) {
   const inputRef = useRef(null);
+  const dispatch = useDispatch();
+
+  function startQuiz() {
+    if (inputRef.current?.value) {
+      dispatch(setUserId(inputRef.current?.value));
+    }
+  }
 
   return (
     <div className="container">
@@ -30,7 +39,7 @@ function Main(props) {
       </form>
 
       <div className="start">
-        <Link className="btn" to={"/quiz"}>
+        <Link className="btn" to={"/quiz"} onClick={startQuiz}>
           Start
         </Link>
       </div>
