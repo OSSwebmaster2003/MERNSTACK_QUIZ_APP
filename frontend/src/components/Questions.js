@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
 // custom hook
 import { useFetchQuestions } from "../hooks/FetchQuestion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { UpdateResult } from "../hooks/SetResult";
 
 function Questions({ onChecked }) {
+  const [checked, setChecked] = useState(undefined);
   const [{ isLoading, apiData, serverError }] = useFetchQuestions();
-  function onSelect(index) {
-    // console.log(index);
-    onChecked(index);
-  }
-
+  const dispatch = useDispatch();
   const trace = useSelector((state) => state.questions.trace);
   const questions = useSelector((state) => state.questions.queue);
   const question = questions && questions[trace];
 
-  useEffect(() => {});
+  function onSelect(index) {
+    onChecked(index);
+    setChecked(index);
+  }
+
+  useEffect(() => {
+    console.log(trace, checked);
+    dispatch(UpdateResult({ trace, checked }));
+  }, [checked]);
 
   if (isLoading) {
     return <h3 className="text-light">Loading...</h3>;

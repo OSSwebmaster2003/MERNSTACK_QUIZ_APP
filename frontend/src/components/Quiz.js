@@ -21,7 +21,11 @@ function Quiz(props) {
     if (trace < questions.queue.length - 1) {
       dispatch(MoveNextQuestion());
     }
-    if (trace < questions.queue.length) {
+    if (
+      trace < questions.queue.length &&
+      result_array &&
+      result_array.length <= trace
+    ) {
       dispatch(PushAnswer(checked));
     }
   }
