@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useFetchQuestions } from "../hooks/FetchQuestion";
 import { useSelector } from "react-redux";
 
-function Questions(props) {
-  const [checked, setChecked] = useState(undefined);
+function Questions({ onChecked }) {
   const [{ isLoading, apiData, serverError }] = useFetchQuestions();
-  function onSelect() {
-    // console.log("radio button change");
+  function onSelect(index) {
+    // console.log(index);
+    onChecked(index);
   }
 
   const trace = useSelector((state) => state.questions.trace);
@@ -31,10 +31,10 @@ function Questions(props) {
           <li key={index}>
             <input
               type="radio"
-              value={true}
+              value={false}
               name="options"
               id={`q${index}-option`}
-              onChange={onSelect()}
+              onChange={() => onSelect(index)}
             />
 
             <label htmlFor={`q${index}-option`} className="text-primary">
@@ -43,20 +43,6 @@ function Questions(props) {
             <div className="check"></div>
           </li>
         ))}
-        {/* <li>
-          <input
-            type="radio"
-            value={true}
-            name="options"
-            id="q1-option"
-            onChange={onSelect()}
-          />
-
-          <label htmlFor="q1-option" className="text-primary">
-            option
-          </label>
-          <div className="check checked"></div>
-        </li> */}
       </ul>
     </div>
   );
