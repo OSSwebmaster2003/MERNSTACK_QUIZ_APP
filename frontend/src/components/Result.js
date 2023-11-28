@@ -42,7 +42,7 @@ function Result(props) {
       <div className="result flex-center">
         <div className="flex">
           <span>Username</span>
-          <span className="bold">Daily Tuition</span>
+          <span className="bold">{userId}</span>
         </div>
         <div className="flex">
           <span>Total Quiz Points :</span>
