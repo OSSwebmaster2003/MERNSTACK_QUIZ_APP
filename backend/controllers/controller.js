@@ -1,25 +1,29 @@
+// get all questions
 export async function getQuestions(req, res) {
-  res.json("questions get api");
+  res.json("Questions api get request");
 }
 
-export async function insertQuestion(req, res) {
-  res.json("questions api post request");
+// insert all questions
+export async function insertQuestions(req, res) {
+  res.json("Questions api post request");
 }
 
+// delete all questions
 export async function deleteQuestions(req, res) {
-  res.json("questions api delete request");
+  res.json("Questions api delete request");
 }
 
-// result controllers
-
+// get result
 export async function getResult(req, res) {
-  res.json("result api get request");
+  res.json("Result api get request");
 }
 
-export async function storeResult(req, res) {
-  res.json("result api post request");
+// insert result
+export async function insertResult(req, res) {
+  res.json("Result api post request");
 }
 
+// delete result
 export async function deleteResult(req, res) {
-  res.json("result api delete request");
+  res.json("Result api delete request");
 }
