@@ -35,15 +35,33 @@ export async function deleteQuestions(req, res) {
 
 // get result
 export async function getResult(req, res) {
-  res.json("Result api get request");
+  try {
+    const result = await Results.find();
+    res.json(result);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // insert result
 export async function insertResult(req, res) {
-  res.json("Result api post request");
+  try {
+    const { username, result, attempts, points, achieved } = req.body;
+    if (!username && !result) throw new Error("Data not provided");
+
+    Results.create({ username, result, attempts, points, achieved });
+    res.json({ msg: "Result Saved Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // delete result
 export async function deleteResult(req, res) {
-  res.json("Result api delete request");
+  try {
+    await Results.deleteMany();
+    res.json({ msg: "Result Deleted Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
