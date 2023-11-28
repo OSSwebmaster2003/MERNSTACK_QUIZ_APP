@@ -6,6 +6,7 @@ import { resetAllAction } from "../redux/question_reducer";
 import { resetResultAction } from "../redux/result_reducer";
 import { attemptsNumber, earnPoints, flagResult } from "../helpers/helper";
 import "../styles/Result.css";
+import { usePublishResult } from "../hooks/SetResult";
 
 function Result(props) {
   const {
@@ -24,12 +25,16 @@ function Result(props) {
   const earn_points = earnPoints(result, answers, 10);
   const flag = flagResult(total_points, earn_points);
 
-  useEffect(() => {
-    console.log("total points " + total_points);
-    console.log("total attempts " + attempts);
-    console.log("earn points " + earn_points);
-    console.log("flag " + flag);
+  // store user Result
+  usePublishResult({
+    result,
+    username: userId,
+    attempts,
+    points: earn_points,
+    achieved: flag ? "Passsed" : "Failed",
   });
+
+  useEffect(() => {});
   return (
     <div className="container">
       <h1 className="title text-light">Quiz Application</h1>

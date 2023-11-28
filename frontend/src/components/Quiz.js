@@ -12,9 +12,7 @@ function Quiz(props) {
   const result_array = result && result.result;
   const trace = questions.trace;
   const dispatch = useDispatch();
-  useEffect(() => {
-    // console.log(result.result);
-  });
+
   // next button event handler
   function onNext(optionValue) {
     if (trace < questions.queue.length - 1) {
